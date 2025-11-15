@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
-with customers as (select * from `dbt-tutorial`.jaffle_shop.customers),
+with customers as (select * from {{ ref('stg_customers') }}),
 
-orders as (select * from `dbt-tutorial`.jaffle_shop.orders),
+orders as (select * from {{ ref('stg_orders') }}),
 
 orders_grouped_by_customer_id as (
 	select
